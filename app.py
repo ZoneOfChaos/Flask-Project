@@ -6,13 +6,19 @@ import json
 app = Flask(__name__)
 
 
-@app.route('/<City>')
-def index(City):  # put application's code here
+@app.route('/')
+def start():
+
+    return render_template("Start.html")
+
+
+@app.route('/<city>')
+def index(city):  # put application's code here
 
 
     url = "https://weatherapi-com.p.rapidapi.com/current.json"
 
-    querystring = {"q": City}
+    querystring = {"q": city}
 
     headers = {
         "X-RapidAPI-Key": "988a3fca0fmsh09ec1fe9f3d9263p1ec578jsne8d811aac699",
