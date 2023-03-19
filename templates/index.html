@@ -7,9 +7,26 @@
 
 
 {% block menu %}
-Main Page
+
 {% endblock %}
 
 {% block content %}
-<h1> Weather </h1>
+<h3> Weather in your region</h3>
+
+          <div class="card text-white bg-primary mb-3" style="max-width: 16rem;">
+            <div class="card-header">
+                Region : {{ data.country_code }}
+                {{ data.current_temp }} C <img src="{{ data.icon }}">
+                <br>
+                Feels like {{ data.feels_like_c }} C
+            </div>
+            <div class="card-body">
+                <p class="card-text">Wind speed {{ data.wind_speed }} kph</p>
+                <p class="card-text">Wind direction {{ data.wind_direction }}</p>
+                <p class="card-text">Humidity {{ data.humidity }} %</p>
+                <p class="card-text">Visibly {{ data.vis_km }} km</p>
+                <p class="card-text">UV index {{ data.uv_index }}</p>
+                <p class="card-text">Local time {{ data.local_time }}</p>
+            </div>
+          </div>
 {% endblock %}
