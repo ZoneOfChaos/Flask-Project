@@ -6,13 +6,13 @@ import json
 app = Flask(__name__)
 
 
-@app.route('/')
-def index():  # put application's code here
+@app.route('/<City>')
+def index(City):  # put application's code here
 
 
     url = "https://weatherapi-com.p.rapidapi.com/current.json"
 
-    querystring = {"q":"Moscow"}
+    querystring = {"q": City}
 
     headers = {
         "X-RapidAPI-Key": "988a3fca0fmsh09ec1fe9f3d9263p1ec578jsne8d811aac699",
@@ -24,6 +24,7 @@ def index():  # put application's code here
     list_of_data = json.loads(response.content)
 
     data = {
+        'city_code': str(list_of_data['location']['name']),
         'country_code': str(list_of_data['location']['region']),
         'local_time': str(list_of_data['location']['localtime']),
         'icon': str(list_of_data['current']['condition']['icon']),
@@ -38,7 +39,6 @@ def index():  # put application's code here
     }
 
     return render_template("index.html", data=data)
-
 
 
 if __name__ == '__main__':
